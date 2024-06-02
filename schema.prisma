@@ -1,0 +1,24 @@
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:123@localhost:3306/ristek"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Barang {
+    id Int @id @default(autoincrement())
+    name String
+    kategori Kategori[]
+    quantity Int
+    price Int
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model Kategori {
+  id Int @id @default(autoincrement())
+  name String
+  barang Barang[]
+}
